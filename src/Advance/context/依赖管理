@@ -1,0 +1,35 @@
+Q：为什么需要依赖管理？
+A：如果不同的项目依赖同一个第三方库的不同版本，会出现问题
+
+godep
+从v1.5开始引入 vendor 模式，如果项目目录下有vendor木露露，则go工具链优先使用vendor下的包
+进行编译、测试
+
+安装：go get github.com/tools/godep
+安装好后，可以在终端输入godep查看所有支持的命令
+
+////////////////////////////////////////////////////////////////////////////
+
+⭐go module⭐
+从Go v1.13开始，go module将是Go默认的依赖管理工具
+
+要启用go module，首先设置环境变量 GO111MODULE，缺省值：auto
+禁用：从GOPATH和vendor中查找包
+启用：忽略上述的路径，仅从go.mod下载依赖
+
+使用go module后，会在项目根目录生成go.mod、go.sum
+GOPROXY设置：export GOPROXY=https://goproxy.cn
+
+go mod 有以下命令：
+
+命令	    说明
+download	download modules to local cache(下载依赖包)
+edit	    edit go.mod from tools or scripts（编辑go.mod)
+graph	    print module requirement graph (打印模块依赖图)
+verify	    initialize new module in current directory（在当前目录初始化mod）
+tidy	    add missing and remove unused modules(拉取缺少的模块，移除不用的模块)
+vendor	    make vendored copy of dependencies(将依赖复制到vendor下)
+verify	    verify dependencies have expected content (验证依赖是否正确）
+why	        explain why packages or modules are needed(解释为什么需要依赖)
+
+比较常用的是 init,tidy, edit

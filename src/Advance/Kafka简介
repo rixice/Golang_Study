@@ -1,0 +1,20 @@
+—— Kafka ——
+
+生产者往Kafka集群发送数据的流程：
+1. 生产者Producer从Kafka集群获取分区leader信息
+2. 生产者Producer向leader发送数据
+3. leader收到数据后写入本地磁盘
+4. follower向leader拉取数据
+5. follower拉取数据完成后，向leader发送ACK
+6. leader收到所有follower的ACK后，向生产者Producer发送ACK
+
+Kafka选择分区的模式：
+1. 指定分区
+2. 指定Key，根据Key做hash决定分区
+3. 轮询
+
+Producer往Kafka发送数据的模式：
+1. “0”：把数据发送给leader就成功，效率最高、安全性最低
+2. “1”：把数据发送给leader，等待leader返回ACK
+3. “all”：把数据发送给leader，follower从leader拉取数据回复ack给leader，leader再回复ack
+（安全性最高，效率最低）

@@ -1,0 +1,11 @@
+主要有以下几个方面：
+
+CPU profile：报告程序的CPU使用情况 <按一定频率去采集数据>
+Memory Profile：报告程序的内存使用情况
+Block Profiling：报告goroutines不在运行状态的情况，分析和查找死锁等性能瓶颈
+Goroutine Profiling：报告goroutines的使用情况，调用关系等
+
+runtime/pprof: 采集工具型应用运行数据进行分析
+net/http/pprof：采集服务型应用运行时数据进行分析
+
+PS：应该只在性能测试时开启该代码
